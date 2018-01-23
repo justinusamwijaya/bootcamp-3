@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
     }
     else {
       let header =new RequestOptions({headers : new Headers({"Authorization":"Bearer " + token})})
-      this.http.post("https://localhost:3000/authenticate",{},header)
+      this.http.post("http://localhost:3000/authenticate",{},header)
       .subscribe(
         result =>{
         },
