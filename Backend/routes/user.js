@@ -21,20 +21,74 @@ roo
     })
 })
 .post("/login",(req,res)=>{
-    user.findOne({Name:req.body.Name,Password:req.body.Password},(error,result)=>{
-        if(error) res.send(error);
-        else if(!result) res.status(404).json({ message : "User not found !"});
-        else {
-            const payload = {
-                id : result._id,
-                name : result.Name,
-                email : result.Email
-            };
-            const token = jwt.sign(payload, "secretkey", { expiresIn : 1000 });    
-            res.json({ token : token,
-                        username: payload});
-        }
-    })
+    if(req.body.howlong=true){
+        user.findOne({Name:req.body.Name,Password:req.body.Password},(error,result)=>{
+            if(error) res.send(error);
+            else if(!result) res.status(404).json({ message : "User not found !"});
+            else {
+                const payload = {
+                    id : result._id,
+                    name : result.Name,
+                    email : result.Email
+                };
+                const token = jwt.sign(payload, "secretkey");    
+                res.json({ token : token,
+                            username: payload,
+                        });
+            }
+        })
+    }else{
+        user.findOne({Name:req.body.Name,Password:req.body.Password},(error,result)=>{
+            if(error) res.send(error);
+            else if(!result) res.status(404).json({ message : "User not found !"});
+            else {
+                const payload = {
+                    id : result._id,
+                    name : result.Name,
+                    email : result.Email
+                };
+                const token = jwt.sign(payload, "secretkey", { expiresIn : 1000 });    
+                res.json({ token : token,
+                            username: payload,
+                        });
+            }
+        })
+    }
+})
+.post("/loginemail",(req,res)=>{
+    if(req.body.howlong=true){
+        user.findOne({Email:req.body.Name,Password:req.body.Password},(error,result)=>{
+            if(error) res.send(error);
+            else if(!result) res.status(404).json({ message : "User not found !"});
+            else {
+                const payload = {
+                    id : result._id,
+                    name : result.Name,
+                    email : result.Email
+                };
+                const token = jwt.sign(payload, "secretkey");    
+                res.json({ token : token,
+                            username: payload,
+                        });
+            }
+        })
+    }else{
+        user.findOne({Email:req.body.Name,Password:req.body.Password},(error,result)=>{
+            if(error) res.send(error);
+            else if(!result) res.status(404).json({ message : "User not found !"});
+            else {
+                const payload = {
+                    id : result._id,
+                    name : result.Name,
+                    email : result.Email
+                };
+                const token = jwt.sign(payload, "secretkey", { expiresIn : 1000 });    
+                res.json({ token : token,
+                            username: payload,
+                        });
+            }
+        })
+    }
 })
 
 module.exports=(function(){

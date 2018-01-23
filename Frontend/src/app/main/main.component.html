@@ -1,0 +1,22 @@
+
+
+   
+   <div *ngIf="makan==false;then login else done"></div>
+
+   <ng-template #login>
+      <div class="container">
+          <h1>UH-OH SORRY BOI</h1> 
+          <br>
+          <h3>YA GATTA LOGIN FURST B4 SEEIN DA "hidden message" ;)</h3>
+          <button routerLink="">really?? I HAFTA LOGIN NOW!</button>
+          <button routerLink="">I don't want to login *NOPE! YOU STILL GOTTA LOGIN FIRST*</button>
+      </div>
+    </ng-template>
+
+   <ng-template #done>
+    <div class="container">
+        <h1>Hi ! <br> This is my friggin site.</h1> 
+        <br>
+        <h3>Don't enjoy :D</h3>
+    </div>
+  </ng-template>

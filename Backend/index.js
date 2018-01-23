@@ -9,17 +9,27 @@ const bear = require("passport-http-bearer").Strategy;
 const up = ex();
 
 pass.use("lolol", new bear((token,done)=>{
-    if (error) {
-        return done("User Not Authorized", null);
-    }
-    else{
-        return done(null, decoded);
-    }
+    jwt.verify(token, "secretkey", (error, decoded) => {
+
+        if (error) {
+            return done("User Not Authorized", null);
+        }
+        else{
+            return done(null, decoded);
+        }
+
+    })
 }))
 
 up
+.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+    next();
+})
 .use(pass.initialize())
-.use("/authenticate",pass.authenticate("lolol",{session:false}),(req,res)=>{
+.post("/authenticate",pass.authenticate("lolol",{session:false}),(req,res)=>{
     res.send(req.user);
 })
 .use(bopas.json())

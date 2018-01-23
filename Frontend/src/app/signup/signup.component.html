@@ -1,3 +1,19 @@
-<p>
-  signup works!
-</p>
+<div class="panel " style="height:530px;width:370px;border-radius:2px; background:rgba(0, 0, 0, 0.582);align-items: center;align-content: center;">
+
+  <h2>Friggin Sign up Form</h2><br><br>
+  <div class="centered">
+  <form style ="width:70%;" #makan="ngForm" (submit)="signup(makan)" action="">
+    <label for="">Tell your friggin name</label> <br>
+    <input name="name" placeholder="@ is not friggin allowed here" class="form-control" type="text" ngModel><br>
+    <label for="">Tell your friggin Email</label> <br>
+    <input name="email" placeholder="you must friggin put @ here" class="form-control" type="text" ngModel><br>
+    <label for="">Tell your friggin password <br><span style="font-size:70%;">* yes, I make it visible so I don't have to go through the trouble checking it every friggin time *</span></label> <br>
+    <input name="password" class="form-control"  type="text" ngModel><br>
+
+    <input type="checkbox" name="check" [(ngModel)]="checkboxValue" (change)="checkbox()" id=""><span style="font-size:70%;"> friggin check this box if you friggin agree to our friggin <b style="color:rgba(255, 0, 255, 0.63)">Terms and Policy</b></span><br><br><br>
+
+  <button class="btn" style="background:rgba(255, 255, 255, 0.137);"> Friggin Submit </button><br>
+ <span style="font-size:70%;">{{checker}}</span> 
+  </form>
+  </div>
+</div>
